@@ -23,7 +23,7 @@ async function loadBase64Image(id,url,mime){
   const img=document.getElementById(id);
   if(!img) return;
   try{
-    const r=await fetch(url+'?v=10',{cache:'no-store'});
+    const r=await fetch(url+'?v=11',{cache:'no-store'});
     if(!r.ok) throw new Error('asset');
     const data=(await r.text()).replace(/\s+/g,'');
     img.src=`data:${mime};base64,${data}`;
@@ -38,22 +38,9 @@ const profileImg=document.querySelector('.profile-photo img');
 if(profileImg){
   profileImg.addEventListener('error',async()=>{
     try{
-      const r=await fetch('assets/profile/profile-tiny.b64.txt?v=10',{cache:'no-store'});
+      const r=await fetch('assets/profile/profile-tiny.b64.txt?v=11',{cache:'no-store'});
       const data=(await r.text()).replace(/\s+/g,'');
       profileImg.src='data:image/jpeg;base64,'+data;
     }catch(e){}
   },{once:true});
-}
-
-const bbaCard=[...document.querySelectorAll('.education-card')].find(card=>card.textContent.includes('Bachelor of Business Administration'));
-if(bbaCard && !bbaCard.querySelector('.degree-link')){
-  const degreeLink=document.createElement('a');
-  degreeLink.href='assets/education/Bachelor-Degree.pdf?v=10';
-  degreeLink.target='_blank';
-  degreeLink.rel='noopener';
-  degreeLink.className='btn secondary degree-link';
-  degreeLink.style.marginTop='14px';
-  degreeLink.textContent='View Degree ↗';
-  degreeLink.setAttribute('aria-label','View Bachelor of Business Administration degree certificate');
-  bbaCard.appendChild(degreeLink);
 }
