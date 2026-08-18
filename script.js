@@ -1,3 +1,33 @@
+// SEO signals for Google and social previews.
+document.title="Rohit Kumar | MSc Finance | Queen's University Belfast";
+const upsertMeta=(selector,attrs)=>{
+  let el=document.head.querySelector(selector);
+  if(!el){el=document.createElement('meta');document.head.appendChild(el);}
+  Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,v));
+};
+upsertMeta('meta[name="description"]',{name:'description',content:"Finance portfolio of Rohit Kumar, MSc Finance postgraduate at Queen's University Belfast, featuring financial analysis, valuation, Bloomberg, S&P Capital IQ Pro, Python, R and Excel projects and certifications."});
+upsertMeta('meta[property="og:title"]',{property:'og:title',content:"Rohit Kumar | MSc Finance | Queen's University Belfast"});
+upsertMeta('meta[property="og:description"]',{property:'og:description',content:"Finance portfolio featuring projects, education, skills and professional certifications."});
+upsertMeta('meta[property="og:url"]',{property:'og:url',content:'https://rsjacker.github.io/'});
+let canonical=document.head.querySelector('link[rel="canonical"]');
+if(!canonical){canonical=document.createElement('link');canonical.rel='canonical';document.head.appendChild(canonical);}
+canonical.href='https://rsjacker.github.io/';
+if(!document.getElementById('personStructuredData')){
+  const schema=document.createElement('script');
+  schema.id='personStructuredData';
+  schema.type='application/ld+json';
+  schema.textContent=JSON.stringify({
+    '@context':'https://schema.org',
+    '@type':'Person',
+    name:'Rohit Kumar',
+    url:'https://rsjacker.github.io/',
+    sameAs:['https://www.linkedin.com/in/rohit-kumar-sharma-/','https://github.com/rsjacker'],
+    alumniOf:{'@type':'CollegeOrUniversity',name:"Queen's University Belfast"},
+    knowsAbout:['Finance','Financial Analysis','Corporate Finance','Valuation','Bloomberg Terminal','S&P Capital IQ Pro','Python','R','Excel']
+  });
+  document.head.appendChild(schema);
+}
+
 const menuBtn=document.getElementById('menuBtn');
 const navMenu=document.getElementById('navMenu');
 if(menuBtn&&navMenu){
@@ -29,7 +59,7 @@ async function loadBase64Image(id,url,mime){
   const img=document.getElementById(id);
   if(!img) return;
   try{
-    const r=await fetch(url+'?v=16',{cache:'no-store'});
+    const r=await fetch(url+'?v=17',{cache:'no-store'});
     if(!r.ok) throw new Error('asset');
     const data=(await r.text()).replace(/\s+/g,'');
     img.src=`data:${mime};base64,${data}`;
