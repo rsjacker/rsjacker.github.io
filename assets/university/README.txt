@@ -1,0 +1,1 @@
+University logo assets are stored in this folder.
