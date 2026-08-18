@@ -28,6 +28,16 @@ if(!document.getElementById('personStructuredData')){
   document.head.appendChild(schema);
 }
 
+// Portfolio favicon.
+let favicon=document.head.querySelector('link[rel~="icon"]');
+if(!favicon){
+  favicon=document.createElement('link');
+  favicon.rel='icon';
+  favicon.type='image/svg+xml';
+  document.head.appendChild(favicon);
+}
+favicon.href='favicon.svg?v=1';
+
 const menuBtn=document.getElementById('menuBtn');
 const navMenu=document.getElementById('navMenu');
 if(menuBtn&&navMenu){
