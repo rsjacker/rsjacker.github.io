@@ -29,7 +29,7 @@ async function loadBase64Image(id,url,mime){
   const img=document.getElementById(id);
   if(!img) return;
   try{
-    const r=await fetch(url+'?v=15',{cache:'no-store'});
+    const r=await fetch(url+'?v=16',{cache:'no-store'});
     if(!r.ok) throw new Error('asset');
     const data=(await r.text()).replace(/\s+/g,'');
     img.src=`data:${mime};base64,${data}`;
@@ -41,6 +41,13 @@ async function loadBase64Image(id,url,mime){
     const fallback=img.parentElement?.querySelector('.edu-logo-placeholder');
     if(fallback) fallback.style.display='grid';
   }
+}
+
+// Load profile photo from a valid base64 asset so it works reliably in mobile in-app browsers.
+const profileImg=document.querySelector('.profile-photo img');
+if(profileImg){
+  profileImg.id='profilePhoto';
+  loadBase64Image('profilePhoto','assets/profile/profile-tiny.b64.txt','image/jpeg');
 }
 
 // Valid Queen's University Belfast crest/logo asset and Sri Dev Suman logo.
