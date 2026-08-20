@@ -12,6 +12,13 @@ upsertMeta('meta[property="og:url"]',{property:'og:url',content:'https://rsjacke
 let canonical=document.head.querySelector('link[rel="canonical"]');
 if(!canonical){canonical=document.createElement('link');canonical.rel='canonical';document.head.appendChild(canonical);}
 canonical.href='https://rsjacker.github.io/';
+
+// Explicit favicon for browser tabs.
+let favicon=document.head.querySelector('link[rel="icon"]');
+if(!favicon){favicon=document.createElement('link');favicon.rel='icon';document.head.appendChild(favicon);}
+favicon.type='image/svg+xml';
+favicon.href='favicon.svg?v=1';
+
 if(!document.getElementById('personStructuredData')){
   const schema=document.createElement('script');
   schema.id='personStructuredData';
@@ -27,16 +34,6 @@ if(!document.getElementById('personStructuredData')){
   });
   document.head.appendChild(schema);
 }
-
-// Portfolio favicon.
-let favicon=document.head.querySelector('link[rel~="icon"]');
-if(!favicon){
-  favicon=document.createElement('link');
-  favicon.rel='icon';
-  favicon.type='image/svg+xml';
-  document.head.appendChild(favicon);
-}
-favicon.href='favicon.svg?v=1';
 
 const menuBtn=document.getElementById('menuBtn');
 const navMenu=document.getElementById('navMenu');
@@ -114,5 +111,13 @@ if(certGrid && ![...certGrid.querySelectorAll('h3')].some(h=>h.textContent.inclu
   const card=document.createElement('article');
   card.className='cert';
   card.innerHTML=`<div class="cert-media"><svg viewBox="0 0 180 64" aria-hidden="true"><rect width="180" height="64" rx="14" fill="#fff"/><text x="14" y="27" font-size="12" font-family="Arial,sans-serif" font-weight="900" fill="#17386d">BANK OF AMERICA</text><g transform="translate(122 9) skewX(-18)"><rect x="18" y="0" width="28" height="5" rx="2" fill="#e31837"/><rect x="12" y="9" width="34" height="5" rx="2" fill="#e31837"/><rect x="6" y="18" width="40" height="5" rx="2" fill="#e31837"/><rect x="0" y="0" width="22" height="5" rx="2" fill="#1261a0"/><rect x="0" y="9" width="17" height="5" rx="2" fill="#1261a0"/></g><text x="14" y="49" font-size="11" font-family="Arial,sans-serif" font-weight="800" fill="#0a3474">Forage</text></svg></div><div><p>Bank of America · Forage · Jul 2026</p><h3>The Private Bank Job Simulation</h3><a href="certificates/Bank-of-America-Private-Bank.pdf" target="_blank" rel="noopener">View certificate ↗</a></div>`;
+  certGrid.appendChild(card);
+}
+
+// Bloomberg Finance Fundamentals certificate — verified through Bloomberg for Education.
+if(certGrid && ![...certGrid.querySelectorAll('h3')].some(h=>h.textContent.includes('Bloomberg Finance Fundamentals'))){
+  const card=document.createElement('article');
+  card.className='cert';
+  card.innerHTML=`<div class="cert-media"><svg viewBox="0 0 180 64" aria-hidden="true"><rect width="180" height="64" rx="14" fill="#07111f"/><text x="16" y="28" font-size="17" font-family="Arial,sans-serif" font-weight="700" fill="#4c7dff">BFF</text><text x="16" y="46" font-size="10.5" font-family="Arial,sans-serif" font-weight="700" fill="#ffffff">Bloomberg Finance Fundamentals</text><g stroke="#4c7dff" stroke-width="3"><line x1="132" y1="17" x2="132" y2="47"/><line x1="147" y1="11" x2="147" y2="40"/><line x1="162" y1="24" x2="162" y2="52"/></g></svg></div><div><p>Bloomberg for Education</p><h3>Bloomberg Finance Fundamentals</h3><a href="https://portal.bloombergforeducation.com/certificates/wVcuNZx1SKgu8DfJiGFjcxx4" target="_blank" rel="noopener">Verify certificate ↗</a></div>`;
   certGrid.appendChild(card);
 }
