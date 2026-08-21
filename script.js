@@ -129,18 +129,23 @@ if(projectsSection && !document.getElementById('campaignCaseStudies')){
   style.id='campaignCaseStudyStyles';
   style.textContent=`
     .campaign-block{margin-top:54px;padding-top:42px;border-top:1px solid var(--line)}
-    .campaign-intro{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:end;margin-bottom:26px}
+    .campaign-intro{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:end;margin-bottom:18px}
     .campaign-intro .card-kicker{margin-bottom:10px}.campaign-intro h3{font-size:clamp(1.8rem,3vw,2.65rem);line-height:1;letter-spacing:-.045em;margin:0}
     .campaign-intro>p{margin:0;color:var(--muted);max-width:720px}
+    .campaign-disclaimer{margin:0 0 26px;color:#94a3b8;font-size:.72rem}
     .campaign-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
     .campaign-card{display:flex;flex-direction:column;min-height:100%;padding:30px}
+    .campaign-brand{width:118px;height:66px;border:1px solid var(--line);border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;padding:8px;margin-bottom:18px;overflow:hidden;box-shadow:0 6px 18px rgba(15,23,42,.04)}
+    .campaign-brand img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+    .campaign-brand .brand-fallback{display:none;text-align:center;font-size:.72rem;font-weight:850;line-height:1.15;color:#334155}
+    .campaign-brand.logo-fallback .brand-fallback{display:block}
     .campaign-card .ownership{display:inline-flex;align-self:flex-start;padding:6px 9px;border:1px solid #cbd5e1;border-radius:999px;background:#f8fafc;color:#475569;font-size:.66rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:16px}
     .campaign-card h3{font-size:1.55rem;margin-bottom:10px}.campaign-card>p{margin:0;color:var(--muted)}
     .campaign-card .result-grid{margin:24px 0 4px}.campaign-card .result-grid strong{font-size:1.2rem}.campaign-card .result-grid span{line-height:1.25;display:block;margin-top:2px}
     .campaign-card .tags{margin-top:auto;padding-top:22px}.campaign-note{font-size:.78rem!important;margin-top:14px!important;color:#64748b!important}
     .campaign-card.wide{grid-column:1/-1}.campaign-card.wide .campaign-wide-body{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:start}
     @media(max-width:900px){.campaign-intro{grid-template-columns:1fr;gap:12px}.campaign-grid{grid-template-columns:1fr}.campaign-card.wide{grid-column:auto}.campaign-card.wide .campaign-wide-body{grid-template-columns:1fr}}
-    @media(max-width:560px){.campaign-block{margin-top:40px;padding-top:34px}.campaign-card{padding:23px}.campaign-card .result-grid{grid-template-columns:1fr}}
+    @media(max-width:560px){.campaign-block{margin-top:40px;padding-top:34px}.campaign-card{padding:23px}.campaign-card .result-grid{grid-template-columns:1fr}.campaign-brand{width:104px;height:60px}}
   `;
   document.head.appendChild(style);
 
@@ -152,8 +157,10 @@ if(projectsSection && !document.getElementById('campaignCaseStudies')){
       <div><p class="card-kicker">COMMERCIAL CAMPAIGN EXPERIENCE · 2022–2025</p><h3>Selected Brand Campaigns</h3></div>
       <p>Influencer marketing work across regional creator activation, event coverage, community seeding and large-scale campaign operations for consumer and automotive brands.</p>
     </div>
+    <p class="campaign-disclaimer">Brand names and logos are shown only to identify campaigns worked on; no endorsement or affiliation is implied.</p>
     <div class="campaign-grid">
       <article class="card campaign-card">
+        <div class="campaign-brand"><img src="https://img-cdn.publive.online/fit-in/1200x675/hospibuz/media/post_attachments/wp-content/uploads/2022/10/Country-Delight-Logo.png" alt="Country Delight logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove();this.parentElement.classList.add('logo-fallback')"><span class="brand-fallback">Country Delight</span></div>
         <span class="ownership">Sole Campaign Ownership</span>
         <p class="card-kicker">REGIONAL CREATOR ACTIVATION</p>
         <h3>Country Delight</h3>
@@ -163,6 +170,7 @@ if(projectsSection && !document.getElementById('campaignCaseStudies')){
       </article>
 
       <article class="card campaign-card">
+        <div class="campaign-brand"><img src="https://global.toyota/pages/news/older/images/1989/10/02/19891002_01_01_s.jpg" alt="Toyota logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove();this.parentElement.classList.add('logo-fallback')"><span class="brand-fallback">Toyota</span></div>
         <span class="ownership">Sole Campaign Ownership</span>
         <p class="card-kicker">AUTO EXPO 2023 · NEW DELHI</p>
         <h3>Toyota</h3>
@@ -172,14 +180,16 @@ if(projectsSection && !document.getElementById('campaignCaseStudies')){
       </article>
 
       <article class="card campaign-card wide">
+        <div class="campaign-brand"><img src="https://about.puma.com/sites/default/files/media/media-download/images/no1-logo.png" alt="PUMA logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove();this.parentElement.classList.add('logo-fallback')"><span class="brand-fallback">PUMA</span></div>
         <span class="ownership">Sole Campaign Ownership</span>
         <div class="campaign-wide-body">
-          <div><p class="card-kicker">SPORTS AWARENESS · COMMUNITY SEEDING</p><h3>PUMA</h3><p>Executed community content seeding for a PUMA sports-awareness initiative positioning sport as part of education rather than simply an extracurricular activity. Distributed brand-generated content featuring Virat Kohli across targeted WhatsApp and Telegram communities.</p><p class="campaign-note">Distribution included 250 WhatsApp groups, typically with 200+ members, and 50 Telegram groups, typically with 5K+ members.</p></div>
+          <div><p class="card-kicker">SPORTS AWARENESS · COMMUNITY SEEDING</p><h3>PUMA</h3><p>Executed community content seeding for a PUMA sports-awareness initiative positioning sport as part of education rather than simply an extracurricular activity. Distributed brand-generated content featuring Virat Kohli across targeted WhatsApp and Telegram communities.</p><p class="campaign-note">Distribution included 250 WhatsApp groups, typically with 200+ members, and 50 Telegram groups, typically with 20K+ members.</p></div>
           <div><div class="result-grid"><div><strong>250</strong><span>WhatsApp groups</span></div><div><strong>50</strong><span>Telegram groups</span></div><div><strong>300</strong><span>Communities seeded</span></div></div><div class="tags"><span>Content Seeding</span><span>Community Marketing</span><span>WhatsApp</span><span>Telegram</span></div></div>
         </div>
       </article>
 
       <article class="card campaign-card">
+        <div class="campaign-brand"><img src="https://www.unilever.com/content-images/92ui5egz/production/0023f51bc3bb5c4ac1c7821bf86af96b25751e11-1080x1080.jpg?fm=jpg&amp;h=630&amp;rect=0%2C257%2C1080%2C567&amp;w=1200" alt="Comfort logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove();this.parentElement.classList.add('logo-fallback')"><span class="brand-fallback">Comfort</span></div>
         <span class="ownership">Campaign Team</span>
         <p class="card-kicker">LARGE-SCALE CREATOR OPERATIONS · 3 MONTHS</p>
         <h3>Comfort</h3>
@@ -189,6 +199,7 @@ if(projectsSection && !document.getElementById('campaignCaseStudies')){
       </article>
 
       <article class="card campaign-card">
+        <div class="campaign-brand"><img src="https://companieslogo.com/img/orig/DABUR.NS_BIG-979a3d48.png?t=1745947463" alt="Dabur logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove();this.parentElement.classList.add('logo-fallback')"><span class="brand-fallback">Dabur</span></div>
         <span class="ownership">Campaign Team</span>
         <p class="card-kicker">REGIONAL NANO-INFLUENCER ACTIVATION</p>
         <h3>Dabur Babool</h3>
