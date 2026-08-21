@@ -211,3 +211,51 @@ if(projectsSection && !document.getElementById('campaignCaseStudies')){
 
   projectsSection.appendChild(block);
 }
+
+// Enrich the two core finance projects with clearer analytical scope and neutral project identity marks.
+if(projectsSection && !document.getElementById('financeProjectEnhancementStyles')){
+  const financeStyle=document.createElement('style');
+  financeStyle.id='financeProjectEnhancementStyles';
+  financeStyle.textContent=`
+    .project-identity{display:flex;align-items:center;gap:13px;margin-bottom:18px}
+    .project-symbol{flex:0 0 58px;width:58px;height:58px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,#0f172a,#334155);color:#fff;font-weight:900;letter-spacing:-.04em;box-shadow:0 8px 22px rgba(15,23,42,.14)}
+    .project-symbol.fx{background:linear-gradient(145deg,#0f766e,#2563eb)}
+    .project-identity strong{display:block;font-size:.92rem;line-height:1.2;color:#0f172a}
+    .project-identity span{display:block;margin-top:3px;font-size:.72rem;color:#64748b}
+    .project-analysis{margin:22px 0 0;padding:18px;border:1px solid var(--line);border-radius:18px;background:#f8fafc}
+    .project-analysis strong{display:block;margin-bottom:8px;font-size:.73rem;letter-spacing:.09em;text-transform:uppercase;color:#0f766e}
+    .project-analysis ul{margin:0;padding-left:18px;color:#64748b;font-size:.88rem}
+    .project-analysis li+li{margin-top:6px}
+    .project-card .project-result-grid{margin:22px 0 0}
+    @media(max-width:560px){.project-symbol{width:52px;height:52px;flex-basis:52px}.project-analysis{padding:16px}}
+  `;
+  document.head.appendChild(financeStyle);
+
+  const findProjectCard=(title)=>[...projectsSection.querySelectorAll('.project-card')].find(card=>card.querySelector('h3')?.textContent.trim()===title);
+
+  const rtxCard=findProjectCard('RTX Corporation');
+  if(rtxCard && !rtxCard.querySelector('.project-identity')){
+    const kicker=rtxCard.querySelector('.card-kicker');
+    kicker.insertAdjacentHTML('beforebegin',`<div class="project-identity"><div class="project-symbol">RTX</div><div><strong>RTX Corporation · Equity Research</strong><span>NYSE: RTX · Aerospace &amp; Defense</span></div></div>`);
+    const description=rtxCard.querySelector('p:not(.card-kicker)');
+    if(description) description.textContent='Built an equity research case using DCF and comparable-company valuation, combining financial statement analysis with market and peer data from Bloomberg and S&P Capital IQ.';
+    const tags=rtxCard.querySelector('.tags');
+    if(tags){
+      tags.insertAdjacentHTML('beforebegin',`<div class="project-analysis"><strong>Analysis performed</strong><ul><li>Reviewed revenue, profitability, cash-flow and capital-structure drivers to form the investment thesis.</li><li>Cross-checked intrinsic value against peer trading multiples and market expectations.</li><li>Converted the analysis into a $205 target price, BUY recommendation and 18% implied upside.</li></ul></div>`);
+      ['Financial Statements','Comparable Companies','Investment Thesis'].forEach(label=>{if(![...tags.children].some(x=>x.textContent===label)){const span=document.createElement('span');span.textContent=label;tags.appendChild(span);}});
+    }
+  }
+
+  const fxCard=findProjectCard('Currency Portfolio Analysis');
+  if(fxCard && !fxCard.querySelector('.project-identity')){
+    const kicker=fxCard.querySelector('.card-kicker');
+    kicker.insertAdjacentHTML('beforebegin',`<div class="project-identity"><div class="project-symbol fx">FX</div><div><strong>Multi-Currency Portfolio</strong><span>International Finance · USD-based investor</span></div></div>`);
+    const description=fxCard.querySelector('p:not(.card-kicker)');
+    if(description) description.textContent='Led portfolio construction and performance attribution across EUR, AUD, CHF, JPY, NZD, CAD and ILS, linking currency returns to macroeconomic conditions and broad USD strength.';
+    const tags=fxCard.querySelector('.tags');
+    if(tags){
+      tags.insertAdjacentHTML('beforebegin',`<div class="result-grid project-result-grid"><div><strong>7</strong><span>Currencies</span></div><div><strong>USD</strong><span>Base investor</span></div><div><strong>Macro</strong><span>Return attribution</span></div></div><div class="project-analysis"><strong>Analysis performed</strong><ul><li>Calculated currency-level returns, portfolio weights and each position's contribution to overall performance.</li><li>Compared movements with interest rates, inflation, growth and external-balance factors.</li><li>Evaluated diversification, cross-currency correlation and the effect of broad USD appreciation on the portfolio.</li></ul></div>`);
+      ['Return Attribution','Macroeconomics','FX Analysis'].forEach(label=>{if(![...tags.children].some(x=>x.textContent===label)){const span=document.createElement('span');span.textContent=label;tags.appendChild(span);}});
+    }
+  }
+}
