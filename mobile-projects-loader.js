@@ -1,0 +1,1 @@
+var s=document.createElement('script');s.src='mobile-projects-fix.js?v=2';document.head.appendChild(s);
