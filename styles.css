@@ -38,6 +38,16 @@
 }
 .project-symbol.rtx-logo img{display:none!important}
 
+/* Mobile reliability fix: the Projects section must never stay hidden if
+   IntersectionObserver/reveal animation is delayed or skipped by Safari or
+   an in-app browser. Desktop keeps the existing reveal animation. */
+@media(max-width:900px){
+  #projects.reveal{
+    opacity:1!important;
+    transform:none!important;
+  }
+}
+
 @media(max-width:560px){
   .edu-logo.qub-logo{
     flex-basis:56px;
