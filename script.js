@@ -41,14 +41,12 @@
     'Toyota':'https://commons.wikimedia.org/wiki/Special:Redirect/file/Toyota_carlogo.svg',
     'PUMA':'https://commons.wikimedia.org/wiki/Special:Redirect/file/Puma-logo-(text).svg',
     'Comfort':'https://logodownload.org/wp-content/uploads/2022/10/comfort-logo-0.png',
-    'Dabur Babool':'https://www.dabur.com/Brands/Oral%20Care/Dabur%20Babool/Products/babool%20paste.jpg'
+    'Dabur Babool':'https://commons.wikimedia.org/wiki/Special:Redirect/file/Dabur%20logo.svg'
   };
 
   function restoreOriginalCampaignLogos(){
     var cards=document.querySelectorAll('.campaign-card');
     for(var i=0;i<cards.length;i++){
-      // Remove the extra logo badge injected by the previous fix, if a cached
-      // version of that markup is still present in the page.
       var duplicates=cards[i].querySelectorAll('.campaign-logo-mark');
       for(var d=0;d<duplicates.length;d++) duplicates[d].remove();
 
@@ -62,7 +60,7 @@
       badge.innerHTML='';
       var img=document.createElement('img');
       img.src=src;
-      img.alt=name+' logo';
+      img.alt=(name==='Dabur Babool'?'Dabur':name)+' logo';
       img.loading='eager';
       img.referrerPolicy='no-referrer';
       img.style.width='100%';
