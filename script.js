@@ -41,7 +41,7 @@
     'Toyota':'https://commons.wikimedia.org/wiki/Special:Redirect/file/Toyota_carlogo.svg',
     'PUMA':'https://commons.wikimedia.org/wiki/Special:Redirect/file/Puma-logo-(text).svg',
     'Comfort':'https://logodownload.org/wp-content/uploads/2022/10/comfort-logo-0.png',
-    'Dabur Babool':'https://commons.wikimedia.org/wiki/Special:Redirect/file/Dabur_logo.svg'
+    'Dabur Babool':'https://www.dabur.com/Brands/Oral%20Care/Dabur%20Babool/Products/babool%20paste.jpg'
   };
 
   function restoreOriginalCampaignLogos(){
