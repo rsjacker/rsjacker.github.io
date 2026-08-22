@@ -1,5 +1,19 @@
 // Core navigation and reveal behaviour.
 (function(){
+  // Explicit site icons for browser tabs, favorites and mobile shortcuts.
+  var oldIcons=document.querySelectorAll('link[rel~="icon"],link[rel="shortcut icon"],link[rel="apple-touch-icon"]');
+  for(var oi=0;oi<oldIcons.length;oi++) oldIcons[oi].remove();
+  function addIcon(rel,href,type){
+    var link=document.createElement('link');
+    link.rel=rel;
+    link.href=href;
+    if(type) link.type=type;
+    document.head.appendChild(link);
+  }
+  addIcon('icon','/site-icon.svg?v=8','image/svg+xml');
+  addIcon('shortcut icon','/favicon.ico?v=8','image/x-icon');
+  addIcon('apple-touch-icon','/apple-touch-icon.png?v=8','image/png');
+
   var menuBtn=document.getElementById('menuBtn');
   var navMenu=document.getElementById('navMenu');
   if(menuBtn&&navMenu){
