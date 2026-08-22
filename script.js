@@ -41,7 +41,7 @@
     'Toyota':'https://commons.wikimedia.org/wiki/Special:Redirect/file/Toyota_carlogo.svg',
     'PUMA':'https://commons.wikimedia.org/wiki/Special:Redirect/file/Puma-logo-(text).svg',
     'Comfort':'https://logodownload.org/wp-content/uploads/2022/10/comfort-logo-0.png',
-    'Dabur Babool':'https://commons.wikimedia.org/wiki/Special:Redirect/file/Dabur%20logo.svg'
+    'Dabur Babool':'assets/brands/dabur-logo.jpg'
   };
 
   function restoreOriginalCampaignLogos(){
@@ -62,7 +62,6 @@
       img.src=src;
       img.alt=(name==='Dabur Babool'?'Dabur':name)+' logo';
       img.loading='eager';
-      img.referrerPolicy='no-referrer';
       img.style.width='100%';
       img.style.height='100%';
       img.style.objectFit='contain';
