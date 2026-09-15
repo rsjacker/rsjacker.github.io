@@ -85,6 +85,19 @@
   }
   restoreOriginalCampaignLogos();
 
+  function addForagePrivateBankCertificate(){
+    var grid=document.querySelector('#certifications .cert-grid');
+    if(!grid || document.getElementById('forage-private-bank-cert')) return;
+    var article=document.createElement('article');
+    article.className='cert';
+    article.id='forage-private-bank-cert';
+    article.innerHTML='<div class="cert-media">Forage</div><div><p>Forage · Jul 2026</p><h3>Private Bank Job Simulation (Bank of America)</h3><a href="forage-private-bank.html" target="_blank" rel="noopener">View certificate ↗</a></div>';
+    var cards=grid.children;
+    if(cards.length>=2) grid.insertBefore(article,cards[2]);
+    else grid.appendChild(article);
+  }
+  addForagePrivateBankCertificate();
+
   function loadBase64Image(id,url,mime){
     var img=document.getElementById(id);
     if(!img) return;
