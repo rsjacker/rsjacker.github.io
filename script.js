@@ -85,18 +85,67 @@
   }
   restoreOriginalCampaignLogos();
 
+  function addMonsterProject(){
+    var projects=document.querySelector('#projects > .cards.two');
+    if(!projects || document.getElementById('monster-project-card')) return;
+    var article=document.createElement('article');
+    article.className='card project-card featured-card';
+    article.id='monster-project-card';
+    article.innerHTML='<div class="project-identity"><div class="project-symbol" style="background:linear-gradient(145deg,#111827,#16a34a)">MNST</div><div><strong>Monster Beverage Corporation · Equity Research</strong><span>NASDAQ: MNST · Beverages</span></div></div><p class="card-kicker">EQUITY RESEARCH &amp; VALUATION · 2026</p><h3>Monster Beverage Corporation</h3><p>Built a full equity research and valuation case on Monster Beverage Corporation using DCF and peer-based valuation, supported by Bloomberg and S&amp;P Capital IQ Pro.</p><p><strong>My work:</strong> Modelled 2026E–2030E revenue, analysed growth, margins, volume and pricing trends, and tested valuation across bear, base and bull scenarios.</p><div class="result-grid"><div><strong>$40.58</strong><span>Base Case</span></div><div><strong>7.0%</strong><span>WACC</span></div><div><strong>3.5%</strong><span>Terminal Growth</span></div></div><p><strong>Scenario range:</strong> $27.70 bear case · $40.58 base case · $63.07 bull case, using revenue forecasts from $9.80bn in 2026E to $14.03bn in 2030E.</p><div class="tags"><span>S&amp;P Capital IQ Pro</span><span>Bloomberg</span><span>Excel</span><span>DCF</span><span>Peer Valuation</span></div>';
+    projects.insertBefore(article,projects.firstChild);
+  }
+  addMonsterProject();
+
   function addForagePrivateBankCertificate(){
     var grid=document.querySelector('#certifications .cert-grid');
     if(!grid || document.getElementById('forage-private-bank-cert')) return;
     var article=document.createElement('article');
     article.className='cert';
     article.id='forage-private-bank-cert';
-    article.innerHTML='<div class="cert-media">Forage</div><div><p>Forage · Jul 2026</p><h3>Private Bank Job Simulation (Bank of America)</h3><a href="forage-private-bank.html" target="_blank" rel="noopener">View certificate ↗</a></div>';
+    article.innerHTML='<div class="cert-media">Forage</div><div><p>Forage · Jul 2026</p><h3>Private Bank Job Simulation (Bank of America)</h3><a href="#" target="_blank" rel="noopener">View certificate ↗</a></div>';
     var cards=grid.children;
     if(cards.length>=2) grid.insertBefore(article,cards[2]);
     else grid.appendChild(article);
   }
   addForagePrivateBankCertificate();
+
+  function applyCertificatePreview(titleText,b64Path,altText){
+    var titles=document.querySelectorAll('#certifications .cert h3');
+    for(var i=0;i<titles.length;i++){
+      if(titles[i].textContent.trim()!==titleText) continue;
+      var card=titles[i].closest('.cert');
+      if(!card) return;
+      var media=card.querySelector('.cert-media');
+      var link=card.querySelector('a');
+      fetch(b64Path+'?v=1',{cache:'no-store'}).then(function(resp){
+        if(!resp.ok) throw new Error('asset');
+        return resp.text();
+      }).then(function(data){
+        var uri='data:image/webp;base64,'+data.replace(/\s+/g,'');
+        if(media){
+          media.innerHTML='';
+          var img=document.createElement('img');
+          img.src=uri;
+          img.alt=altText;
+          img.loading='eager';
+          img.style.width='100%';
+          img.style.height='100%';
+          img.style.objectFit='cover';
+          img.style.display='block';
+          media.appendChild(img);
+        }
+        if(link){
+          link.href=uri;
+          link.textContent='View certificate ↗';
+        }
+      }).catch(function(){});
+      return;
+    }
+  }
+
+  applyCertificatePreview('Private Bank Job Simulation (Bank of America)','assets/certificates/forage-private-bank-preview.b64.txt','Bank of America Private Bank Job Simulation certificate issued by Forage');
+  applyCertificatePreview('The Fundamentals of Digital Marketing','assets/certificates/google-digital-marketing-preview.b64.txt','Google Digital Unlocked Fundamentals of Digital Marketing certificate');
+  applyCertificatePreview('Entrepreneurship – from ideas to reality','assets/certificates/openlearn-entrepreneurship-preview.b64.txt','OpenLearn Entrepreneurship from ideas to reality statement of participation');
 
   function loadBase64Image(id,url,mime){
     var img=document.getElementById(id);
